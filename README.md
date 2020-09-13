@@ -34,7 +34,7 @@ Pure C++ package with Cookiecutter.
 * pip
 * cookiecutter - https://github.com/cookiecutter/cookiecutter
 * conan - https://github.com/conan-io/conan
-* cmake
+* cmake(>= 3.1)
 * spdlog - https://github.com/gabime/spdlog
 * gtest - https://github.com/google/googletest
 
@@ -51,6 +51,11 @@ $ pip3 install conan --user
 
 $ echo "export PATH=$PATH:$HOME/.local/bin" >> $HOME/.bashrc
 $ echo "export PYTHONPATH=$PYTHONPATH:$HOME/.local/python3.8/site-packages" >> $HOME/.bashrc  # Check your python3 path
+
+# If you are using GCC(G++) compiler >= 5.1, Conan will set the compiler.libcxx
+# to the old ABI for backwards compatibility.
+# You can change this with the following commands.
+$ conan profile update settings.compiler.libcxx=libstdc++11 default
 ```
 
 
@@ -63,7 +68,8 @@ $ cookiecutter https://github.com/ppd0523/cookiecutter-cpp.git
 # Build
 $ cd cookiecutter-cpp
 $ mkdir build && cd build
-$ conan install .. --build=fmt --build=spdlog --build=gtest
+# conan install .. --build=fmt --build=spdlog --build=gtest
+$ conan install .. --build=missing
 $ cmake .. && make
 
 # Execute
@@ -72,3 +78,4 @@ $ ./bin/test
 ```
 
 ### Trouble Shooting
+1. In case of Link error, check conan compiler option(libcxx).
