@@ -1,6 +1,6 @@
 {
     "full_name": "your name",
-    "email": "you@robocare.co.kr",
+    "email": "you@email.com",
     "project_name": "C++ Project",
     "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_').replace('+', 'p') }}",
     "project_short_description" : "",
